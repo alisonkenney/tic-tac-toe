@@ -33,7 +33,7 @@ window.onload = function() {
 	//Need to send through the 
 
 	function resetChecker() {
-		var resetButton = body.querySelectorAll('reset');
+		var resetButton = body.querySelector('.reset');
 		resetButton.addEventListener("click", resetGame);
 	}
 	//Run reset checker function event listner for "reset" button
@@ -46,58 +46,64 @@ window.onload = function() {
 	start();
 	//run makeGameBoard(), clickChecker(); and resetChecker();
 	
-	
 
 	function playerMove(whichBox) {
-	var currentBox = whichBox;	
+	var currentBox = whichBox;
+	if (currentBox.innerHTML.length === 0) {	
 		if (turns%2 === 0) {
 			var X = document.createElement('p');
 			X.setAttribute('id', 'theX');
 			X.setAttribute('class', 'XorO');
 			X.textContent = 'X';
 			currentBox.appendChild(X);
-			playerText.textContent = "Player 2: Your Turn!";
+			playerText.textContent = "Player 2: Your Turn!"; 
+			playerText.setAttribute('class', 'player2')
 		} else if (turns%2 !== 0) {
 			var O = document.createElement('p');
 			O.setAttribute('id', 'theO');
 			O.setAttribute('class', 'XorO');
-			O.textContent = '0';
+			O.textContent = 'O';
 			currentBox.appendChild(O);
 			playerText.textContent = "Player 1: Your Turn!";
+			playerText.setAttribute('class', 'player1')
 		}
 		turns++;
 		console.log(turns);
+		}
 	}
 
-	function resetGame() {
-		gameBoard = [];
-		Turns = 0;
-		start();
-	}
-	
-
-	//PlayerMoveFunction
+	//PlayerMove Function
 	//Who's turn it is - if odd player1Turn, if even player2Turn
 
+	//if Even
+	//Alert player one that it is their turn upon page load
+	//Player one must click a box (addEventLister for click, box#)
+	//On "click" we need to create element 'X' to (.box)[i] that was clicked
+	//We will need textContent for 'X' (create class) to appear
+	//We will need to append child 'X' to box that was clicked
+	//Remove eventListner from "clicked" box
 
-//Function player1Turn
-//Alert player one that it is their turn upon page load
-//Player one must click a box (addEventLister for click, box#)
-//On "click" we need to create element 'X' to (.box)[i] that was clicked
-//We will need textContent for 'X' (create class) to appear
-//We will need to append child 'X' to box that was clicked
-//Remove eventListner from "clicked" box
+	//if Odd
+	//Alert player two that it is their turn upon page load
+	//Player two must click a box (addEventLister for click, box#)
+	//On "click" we need to create element 'O' to (.box)[i] that was clicked
+	//We will need textContent for 'O' (create class) to appear
+	//We will need to append child 'O' to box that was clicked
+	//Remove eventListner from "clicked" box
+	
 
-//Function player2Turn
-//Alert player two that it is their turn upon page load
-//Player two must click a box (addEventLister for click, box#)
-//On "click" we need to create element 'O' to (.box)[i] that was clicked
-//We will need textContent for 'O' (create class) to appear
-//We will need to append child 'O' to box that was clicked
-//Remove eventListner from "clicked" box
+	function resetGame() {
+		for(var i = 0; i < 9; i++) {
+			gameBoard[i].innerHTML = "";
+		}
 
-//Reset function
-//On "click" of class .button, we need to reset the game to initial_state
+		playerText.textContent = "Player 1: Your Turn!";
+		playerText.setAttribute('class', 'player1');
+		turns = 0;
+	}
+	
+	//Reset function
+	//On "click" of class .button, we need to reset the game to initial_state
 };
 
 

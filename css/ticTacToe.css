@@ -1,49 +1,112 @@
+body {
+	background-image: url("http://www.technocrazed.com/wp-content/uploads/2015/12/Brick-wallaper-For-Background-1.jpg");
+}
+
+h1 {
+	color: white;
+	font-size: 75px;
+	text-align: center;
+	font-family: Papyrus, fantasy;
+}
+
 .box {
-	height: 250px;
-	width: 250px;
+	height: 185px;
+	width: 185px;
 	display: inline-block;
-	border: 3px solid black;
+	border: 3px solid white;
+	text-align: center;
+	border-radius: 20px;
+	margin: 3px;
+}
+
+.box:hover {
+	background-color: #68DCDC;
+	opacity: .8;
+}
+
+.centered-table {
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.row1 {
+	display: block;
 	text-align: center;
 }
 
-.row {
+.row2 {
 	display: block;
+	text-align: center;
+}
+
+.row3 {
+	display: block;
+	text-align: center;
 }
 
 .reset {
-	border: 2px solid black;
+	border: 2px solid white;
 	height: 50px;
 	width: 250px;
-
-}
-
-.center {
-    position: fixed;
-
-}
-
-#gameBoard {
+	background: #68DCDC;
+	font-size: 28px;
+	color: black;
+	font-weight: bold;
+	font-family: Papyrus, fantasy;
 	text-align: center;
+	border-radius: 15px;
+	position: relative;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%)
+	
 }
 
-.x {
-	text-align: center;
-	padding-top: 30px;
-	font-size: 60px;
+.reset:hover {
+	background-color: white;
 }
 
 .playerTurn {
-	color: red;
+	color: #68DCDC;
+	text-align: center;
+	font-size: 40px;
+	font-family: Papyrus, fantasy;
+	margin-top: -38px;
 }
 
 .XorO {
+	width: 200px;
+	position: absolute;
 	font-size: 90px;
+	font-weight: bolder;
 }
 
 #theX {
-	color: blue;
+	color: #68DCDC;
+	position: absolute;
+	margin-top: 45px;
+	width: 200px;
 }
 
 #theO {
-	color: green;
+	color: white;
+	position: absolute;
+	margin-top: 45px;
+	width: 200px;
+}
+
+.player1 {
+	color: #68DCDC;
+	text-align: center;
+	font-size: 40px;
+	font-family: Papyrus, fantasy;
+	margin-top: -38px;
+}
+
+.player2 {
+	color: white ;
+	text-align: center;
+	font-size: 40px;
+	font-family: Papyrus, fantasy;
+	margin-top: -38px;
 }
