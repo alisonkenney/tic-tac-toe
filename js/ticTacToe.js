@@ -1,26 +1,62 @@
 window.onload = function() {
 
-	THIS IS MY REFACTORED CODE
+	/*THIS IS MY REFACTORED CODE*/
 	
 	var body = document.querySelector('body');
-	var gameBoard = [];
 	var turns = 0;
 	var playerText = body.querySelector('.playerTurn');
+	var globalBoard = [];
 	
-	function makeGameBoard() {
+	function FullBoard() {
+		this.gameBoard = [];
+		this.resetButton = body.querySelector('.reset');
+	}
+
+	FullBoard.prototype = {
+		start: function() {
+			this.makeGameBoard();
+			this.clickChecker();
+			this.resetChecker();
+		},
+		makeGameBoard: function() {
+			for (var i=0; i<9; i++) {
+				var box = body.querySelectorAll('.box')[i];
+				this.gameBoard.push(box);
+			}
+			globalBoard = this.gameBoard;
+		},
+		clickChecker: function() {
+			for (var i=0; i<9; i++) {
+				this.gameBoard[i].addEventListener('click', function() {
+				var whichBox = this;
+				playerMove(whichBox);
+				console.log(whichBox);
+				});
+			}
+		},
+		resetChecker: function() {
+			this.resetButton.addEventListener("click", resetGame);
+		}
+	};	
+
+	new FullBoard().start();
+	
+	
+	/*function makeGameBoard() {
 		for (var i=0; i<9; i++) {
 			var box = body.querySelectorAll('.box')[i];
 			gameBoard.push(box);
 		}
 	}
+
 	makeGameBoard();
-	console.log(gameBoard);	
+	*/
 
 	//Run makeGameBoard function on page load
 	//This will create an array of each <td> with class .box and run through them starting with [0]
 	//This new box variable will push into the gameBoard to make the array
 
-	function clickChecker() {
+	/*function clickChecker() {
 		for (var i=0; i<9; i++) {
 			gameBoard[i].addEventListener('click', function() {
 				var whichBox = this;
@@ -28,49 +64,49 @@ window.onload = function() {
 				console.log(whichBox);
 			});
 		}
-	}
+	}*/
 
 	//Run click checker function event listner for "clicking" a box
 	//We need to create for loop and addEventLister to each individual box
 	//Need to send through the 
 
-	function resetChecker() {
+	/*function resetChecker() {
 		var resetButton = body.querySelector('.reset');
 		resetButton.addEventListener("click", resetGame);
-	}
+	}*/
 	//Run reset checker function event listner for "reset" button
 	//Set variable for initial_state of gameBoard outside of function so it can be accessed later
 
-	function start() {
+	/*function start() {
 		clickChecker();
 		resetChecker();
 	}
-	start();
+	start();*/
 	//run makeGameBoard(), clickChecker(); and resetChecker();
 	
 
 	function playerMove(whichBox) {
-	var currentBox = whichBox;
-	if (currentBox.innerHTML.length === 0) {	
-		if (turns%2 === 0) {
-			var X = document.createElement('p');
-			X.setAttribute('id', 'theX');
-			X.setAttribute('class', 'XorO');
-			X.textContent = 'X';
-			currentBox.appendChild(X);
-			playerText.textContent = "Player 2: Your Turn!"; 
-			playerText.setAttribute('class', 'player2')
-		} else if (turns%2 !== 0) {
-			var O = document.createElement('p');
-			O.setAttribute('id', 'theO');
-			O.setAttribute('class', 'XorO');
-			O.textContent = 'O';
-			currentBox.appendChild(O);
-			playerText.textContent = "Player 1: Your Turn!";
-			playerText.setAttribute('class', 'player1')
-		}
-		turns++;
-		console.log(turns);
+		var currentBox = whichBox;
+		if (currentBox.innerHTML.length === 0) {	
+			if (turns%2 === 0) {
+				var X = document.createElement('p');
+				X.setAttribute('id', 'theX');
+				X.setAttribute('class', 'XorO');
+				X.textContent = 'X';
+				currentBox.appendChild(X);
+				playerText.textContent = "Player 2: Your Turn!"; 
+				playerText.setAttribute('class', 'player2');
+			} else if (turns%2 !== 0) {
+				var O = document.createElement('p');
+				O.setAttribute('id', 'theO');
+				O.setAttribute('class', 'XorO');
+				O.textContent = 'O';
+				currentBox.appendChild(O);
+				playerText.textContent = "Player 1: Your Turn!";
+				playerText.setAttribute('class', 'player1');
+			}
+			turns++;
+			console.log(turns);
 		}
 	}
 
@@ -93,12 +129,11 @@ window.onload = function() {
 	//We will need to append child 'O' to box that was clicked
 	//Remove eventListner from "clicked" box
 	
-
+	
 	function resetGame() {
 		for(var i = 0; i < 9; i++) {
-			gameBoard[i].innerHTML = "";
+			globalBoard[i].innerHTML = "";
 		}
-
 		playerText.textContent = "Player 1: Your Turn!";
 		playerText.setAttribute('class', 'player1');
 		turns = 0;
