@@ -1,6 +1,4 @@
 My ADT's
 	1)makeGameBoard
-	2)clickChecker
-	3)resetChecker
 	4)playerMove
 	5)resetGame
