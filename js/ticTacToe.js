@@ -1,4 +1,6 @@
 window.onload = function() {
+
+	THIS IS MY REFACTORED CODE
 	
 	var body = document.querySelector('body');
 	var gameBoard = [];
