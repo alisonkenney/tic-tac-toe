@@ -36,7 +36,8 @@ window.onload = function() {
 		},
 		resetChecker: function() {
 			this.resetButton.addEventListener("click", resetGame);
-		}
+		},
+
 	};	
 
 	new FullBoard().start();
@@ -104,11 +105,16 @@ window.onload = function() {
 				currentBox.appendChild(O);
 				playerText.textContent = "Player 1: Your Turn!";
 				playerText.setAttribute('class', 'player1');
-			}
+			} 
 			turns++;
+			if (turns === 9) {
+				alert("It's a draw! Play again!");
+				resetGame();
+			}
 			console.log(turns);
 		}
 	}
+
 
 	//PlayerMove Function
 	//Who's turn it is - if odd player1Turn, if even player2Turn

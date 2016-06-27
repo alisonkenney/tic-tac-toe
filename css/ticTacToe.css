@@ -29,21 +29,6 @@ h1 {
     margin-right: auto;
 }
 
-.row1 {
-	display: block;
-	text-align: center;
-}
-
-.row2 {
-	display: block;
-	text-align: center;
-}
-
-.row3 {
-	display: block;
-	text-align: center;
-}
-
 .reset {
 	border: 2px solid white;
 	height: 50px;
